@@ -1,7 +1,8 @@
 Object Routing Library
 ======================
-This library allows you to define routes for your objects. It can be used with any router implementation, the library
-has an adapter for Symfony 2.1 Router built-in.
+
+This library makes generating routes for objects a breeze, and is not tied to any concrete router implementation. As
+part of the library, we ship an adapter for Symfony 2.1's router.
 
 Installation
 ------------
@@ -35,7 +36,7 @@ At the moment, routes can only be defined via Doctrine annotations::
 Route parameters are key-value pairs where keys represent the placeholder in the URL template, and values can be any
 value that is supported by Symfony2's PropertyAccess Component.
 
-Assuming that you're using Symfony2 (although you do not have to), the corresponding view action could look like::
+If you are using Symfony2 and you defined a route like this::
 
     class BlogPostController
     {
@@ -47,10 +48,23 @@ Assuming that you're using Symfony2 (although you do not have to), the correspon
         }
     }
 
-and routes could be generated like this::
+you can generate this route with the object router very easily::
 
     $objectRouter->generate('view', $blogPost);
+    // equivalent to
+    $router->generate('the-actual-route-name', array('slug' => $blogPost->getSlug()));
 
+For Twig, this library also provides two new functions:
+
+.. code-block :: html+jinja
+
+    {{ object_path('view', blogPost) }}
+    {# equivalent to #}
+    {{ path('the-actual-route-name', {'slug': blogPost.slug}) }}
+
+    {{ object_url('view', blogPost) }}
+    {# equivalent to #}
+    {{ url('the-actual-route-name', {'slug': blogPost.slug}) }}
 
 License
 -------
