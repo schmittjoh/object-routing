@@ -54,10 +54,11 @@ class ObjectRouter
      * @param string $type
      * @param object $object
      * @param boolean $absolute
+     * @param array $extraParams
      *
      * @throws \InvalidArgumentException
      */
-    public function generate($type, $object, $absolute = false)
+    public function generate($type, $object, $absolute = false, array $extraParams = array())
     {
         if ( ! is_object($object)) {
             throw new \InvalidArgumentException(sprintf('$object must be an object, but got "%s".', gettype($object)));
@@ -80,11 +81,21 @@ class ObjectRouter
 
         $route = $metadata->routes[$type];
 
-        $params = array();
+        $params = $extraParams;
         foreach ($route['params'] as $k => $path) {
             $params[$k] = $this->accessor->getValue($object, $path);
         }
 
         return $this->router->generate($route['name'], $params, $absolute);
+    }
+
+    public function path($type, $object, array $extraParams = array())
+    {
+        return $this->generate($type, $object, false, $extraParams);
+    }
+
+    public function url($type, $object, array $extraParams = array())
+    {
+        return $this->generate($type, $object, true, $extraParams);
     }
 }
