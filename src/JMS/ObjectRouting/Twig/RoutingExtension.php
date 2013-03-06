@@ -21,14 +21,14 @@ class RoutingExtension extends \Twig_Extension
         );
     }
 
-    public function url($type, $object)
+    public function url($type, $object, array $extraParams = array())
     {
-        return $this->router->generate($type, $object, true);
+        return $this->router->generate($type, $object, true, $extraParams);
     }
 
-    public function path($type, $object)
+    public function path($type, $object, array $extraParams = array())
     {
-        return $this->router->generate($type, $object);
+        return $this->router->generate($type, $object, false, $extraParams);
     }
 
     public function getName()
