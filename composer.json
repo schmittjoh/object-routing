@@ -5,7 +5,7 @@
 
     "require": {
         "jms/metadata": "1.*",
-        "symfony/property-access": "2.2.*@RC"
+        "symfony/property-access": "~2.2"
     },
 
     "require-dev": {
