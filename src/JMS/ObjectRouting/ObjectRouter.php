@@ -24,13 +24,33 @@ use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
 use Metadata\MetadataFactory;
 use Metadata\MetadataFactoryInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * Class ObjectRouter
+ *
+ * @package JMS\ObjectRouting
+ */
 class ObjectRouter
 {
+    /**
+     * @var RouterInterface
+     */
     private $router;
+    /**
+     * @var MetadataFactoryInterface
+     */
     private $metadataFactory;
+    /**
+     * @var PropertyAccessor
+     */
     private $accessor;
 
+    /**
+     * @param RouterInterface $router
+     *
+     * @return ObjectRouter
+     */
     public static function create(RouterInterface $router)
     {
         return new self(
@@ -41,6 +61,10 @@ class ObjectRouter
         );
     }
 
+    /**
+     * @param RouterInterface          $router
+     * @param MetadataFactoryInterface $metadataFactory
+     */
     public function __construct(RouterInterface $router, MetadataFactoryInterface $metadataFactory)
     {
         $this->router = $router;
@@ -51,16 +75,16 @@ class ObjectRouter
     /**
      * Generates a path for an object.
      *
-     * @param string $type
-     * @param object $object
+     * @param string  $type
+     * @param object  $object
      * @param boolean $absolute
-     * @param array $extraParams
+     * @param array   $extraParams
      *
      * @throws \InvalidArgumentException
      */
-    public function generate($type, $object, $absolute = false, array $extraParams = array())
+    public function generate($type, $object, $absolute = UrlGeneratorInterface::ABSOLUTE_URL, array $extraParams = array())
     {
-        if ( ! is_object($object)) {
+        if (!is_object($object)) {
             throw new \InvalidArgumentException(sprintf('$object must be an object, but got "%s".', gettype($object)));
         }
 
@@ -70,13 +94,13 @@ class ObjectRouter
             throw new \RuntimeException(sprintf('There were no object routes defined for class "%s".', get_class($object)));
         }
 
-        if ( ! isset($metadata->routes[$type])) {
+        if (!isset($metadata->routes[$type])) {
             throw new \RuntimeException(sprintf(
-                'The object of class "%s" has no route with type "%s". Available types: %s',
-                get_class($object),
-                $type,
-                implode(', ', array_keys($metadata->routes))
-            ));
+                                            'The object of class "%s" has no route with type "%s". Available types: %s',
+                                            get_class($object),
+                                            $type,
+                                            implode(', ', array_keys($metadata->routes))
+                                        ));
         }
 
         $route = $metadata->routes[$type];
@@ -89,13 +113,27 @@ class ObjectRouter
         return $this->router->generate($route['name'], $params, $absolute);
     }
 
+    /**
+     * @param string $type
+     * @param object $object
+     * @param array  $extraParams
+     *
+     * @return mixed
+     */
     public function path($type, $object, array $extraParams = array())
     {
-        return $this->generate($type, $object, false, $extraParams);
+        return $this->generate($type, $object, UrlGeneratorInterface::ABSOLUTE_URL, $extraParams);
     }
 
+    /**
+     * @param string $type
+     * @param object $object
+     * @param array  $extraParams
+     *
+     * @return mixed
+     */
     public function url($type, $object, array $extraParams = array())
     {
-        return $this->generate($type, $object, true, $extraParams);
+        return $this->generate($type, $object, UrlGeneratorInterface::ABSOLUTE_URL, $extraParams);
     }
 }

@@ -18,7 +18,21 @@
 
 namespace JMS\ObjectRouting;
 
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
+/**
+ * Interface RouterInterface
+ *
+ * @package JMS\ObjectRouting
+ */
 interface RouterInterface
 {
-    public function generate($name, array $params, $absolute = false);
+    /**
+     * @param string     $name
+     * @param array      $params
+     * @param bool|false $absolute
+     *
+     * @return mixed
+     */
+    public function generate($name, array $params, $absolute = UrlGeneratorInterface::ABSOLUTE_URL);
 }

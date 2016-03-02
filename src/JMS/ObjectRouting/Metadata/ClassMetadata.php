@@ -20,14 +20,24 @@ namespace JMS\ObjectRouting\Metadata;
 
 use Metadata\MergeableClassMetadata;
 
+/**
+ * Class ClassMetadata
+ *
+ * @package JMS\ObjectRouting\Metadata
+ */
 class ClassMetadata extends MergeableClassMetadata
 {
     public $routes = array();
 
+    /**
+     * @param string $type
+     * @param string $name
+     * @param array  $params
+     */
     public function addRoute($type, $name, array $params = array())
     {
         $this->routes[$type] = array(
-            'name' => $name,
+            'name'   => $name,
             'params' => $params,
         );
     }
