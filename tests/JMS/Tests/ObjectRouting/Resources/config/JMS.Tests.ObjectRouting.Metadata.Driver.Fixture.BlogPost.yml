@@ -1,0 +1,9 @@
+JMS\Tests\ObjectRouting\Metadata\Driver\Fixture\BlogPost:
+    view:
+        name: "blog_post_view"
+        params:
+            slug: "slug"
+    edit:
+        name: "blog_post_edit"
+        params:
+            slug: "slug"
