@@ -5,11 +5,11 @@
 
     "require": {
         "jms/metadata": "1.*",
-        "symfony/property-access": "~2.2"
+        "symfony/property-access": ">=2.2"
     },
 
     "require-dev": {
-        "symfony/routing": "2.1.*",
+        "symfony/routing": ">=2.1",
         "doctrine/common": "2.*"
     },
 
