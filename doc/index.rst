@@ -16,7 +16,10 @@ or add it to your ``composer.json`` file directly.
 
 Usage
 -----
-At the moment, routes can only be defined via Doctrine annotations::
+
+Annotations
+----------
+::
 
     use JMS\ObjectRouting\Annotation\ObjectRoute;
 
@@ -32,6 +35,43 @@ At the moment, routes can only be defined via Doctrine annotations::
             /** .. */
         }
     }
+
+Php
+----
+::
+
+    <?php
+    // file: Acme.Model.BlogPost.php
+    $metadata = new JMS\ObjectRouting\Metadata\ClassMetadata('Acme\Model\BlogPost');
+
+    $metadata->addRoute('view', 'the-actual-route-name', array('slug' => 'slug'));
+
+    return $metadata;
+
+Yaml
+----
+file: Acme.Model.BlogPost.yml::
+
+    Acme\Model\BlogPost:
+        view:
+            name: "the-actual-route-name"
+            params:
+                slug: "slug"
+
+Xml
+----
+::
+
+    <!-- file: Acme.Model.BlogPost.xml -->
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <object-routing>
+        <class name="Acme\Model\BlogPost">
+            <route type="view" name="the-actual-route-name">
+                <param name="slug">slug</param>
+            </route>
+        </class>
+    </object-routing>
+
 
 Route parameters are key-value pairs where keys represent the placeholder in the URL template, and values can be any
 value that is supported by Symfony2's PropertyAccess Component.
