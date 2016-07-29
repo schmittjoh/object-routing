@@ -26,7 +26,7 @@ use Metadata\Driver\AbstractFileDriver;
 /**
  * Class PhpDriver
  * @package JMS\ObjectRouting\Metadata\Driver
- * @author Sebastian Kroczek <sk@xbug.de>
+ * @author  Sebastian Kroczek <sk@xbug.de>
  */
 class PhpDriver extends AbstractFileDriver
 {

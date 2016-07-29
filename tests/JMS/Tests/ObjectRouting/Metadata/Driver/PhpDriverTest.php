@@ -2,8 +2,6 @@
 
 namespace JMS\Tests\ObjectRouting\Metadata\Driver;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
 use JMS\ObjectRouting\Metadata\Driver\PhpDriver;
 use Metadata\Driver\FileLocator;
 
@@ -31,6 +29,6 @@ class PhpDriverTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->driver = new PhpDriver(new FileLocator(['' => realpath(__DIR__.'/../../Resources/config')]));
+        $this->driver = new PhpDriver(new FileLocator(array('' => realpath(__DIR__.'/../../Resources/config'))));
     }
 }

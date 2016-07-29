@@ -31,6 +31,6 @@ class YamlDriverTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->driver = new YamlDriver(new FileLocator(['' => realpath(__DIR__.'/../../Resources/config')]));
+        $this->driver = new YamlDriver(new FileLocator(array('' => realpath(__DIR__.'/../../Resources/config'))));
     }
 }

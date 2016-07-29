@@ -27,7 +27,7 @@ use Metadata\Driver\AbstractFileDriver;
 /**
  * Class XmlDriver
  * @package JMS\ObjectRouting\Metadata\Driver
- * @author Sebastian Kroczek <sk@xbug.de>
+ * @author  Sebastian Kroczek <sk@xbug.de>
  */
 class XmlDriver extends AbstractFileDriver
 {
@@ -64,10 +64,10 @@ class XmlDriver extends AbstractFileDriver
         }
 
         foreach ($elem->xpath('./route') as $r) {
-            if('' === $type = (string)$r->attributes()->{'type'}){
+            if ('' === $type = (string)$r->attributes()->{'type'}) {
                 throw new RuntimeException('Could not find attribute "type" inside XML element.');
             }
-            if('' === $name = (string)$r->attributes()->{'name'}){
+            if ('' === $name = (string)$r->attributes()->{'name'}) {
                 throw new RuntimeException('Could not find attribute "name" inside XML element.');
             }
 

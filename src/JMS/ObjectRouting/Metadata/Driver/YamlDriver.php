@@ -26,7 +26,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Class YamlDriver
  * @package JMS\ObjectRouting\Metadata\Driver
- * @author Sebastian Kroczek <sk@xbug.de>
+ * @author  Sebastian Kroczek <sk@xbug.de>
  */
 class YamlDriver extends AbstractFileDriver
 {
@@ -55,10 +55,10 @@ class YamlDriver extends AbstractFileDriver
         $metadata->fileResources[] = $class->getFileName();
 
         foreach ($config as $type => $value) {
-            if(!array_key_exists('name', $value)){
+            if (!array_key_exists('name', $value)) {
                 throw new RuntimeException('Could not find key "type" inside yaml element.');
             }
-            $metadata->addRoute($type, $value['name'], array_key_exists('params', $value) ? $value['params'] : []);
+            $metadata->addRoute($type, $value['name'], array_key_exists('params', $value) ? $value['params'] : array());
         }
 
         return $metadata;

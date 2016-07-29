@@ -31,6 +31,6 @@ class XmlDriverTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->driver = new XmlDriver(new FileLocator(['' => realpath(__DIR__.'/../../Resources/config')]));
+        $this->driver = new XmlDriver(new FileLocator(array('' => realpath(__DIR__.'/../../Resources/config'))));
     }
 }
