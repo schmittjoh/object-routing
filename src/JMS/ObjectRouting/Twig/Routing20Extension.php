@@ -23,7 +23,7 @@ use JMS\ObjectRouting\ObjectRouter;
 /**
  * Class Routing20Extension
  * @package JMS\ObjectRouting\Twig
- * @author Sebastian Kroczek <sk@xbug.de>
+ * @author  Sebastian Kroczek <sk@xbug.de>
  */
 class Routing20Extension extends \Twig_Extension
 {
@@ -37,8 +37,8 @@ class Routing20Extension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('object_path', [$this, 'path']),
-            new \Twig_SimpleFunction('object_url', [$this, 'url']),
+            new \Twig_SimpleFunction('object_path', array($this, 'path')),
+            new \Twig_SimpleFunction('object_url', array($this, 'url')),
         );
     }
 
