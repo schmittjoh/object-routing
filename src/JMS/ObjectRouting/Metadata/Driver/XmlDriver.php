@@ -71,7 +71,7 @@ class XmlDriver extends AbstractFileDriver
                 throw new RuntimeException('Could not find attribute "name" inside XML element.');
             }
 
-            $params = [];
+            $params = array();
             foreach ($r->xpath('./param') as $p) {
                 $params[(string)$p->attributes()] = (string)$p;
             }
