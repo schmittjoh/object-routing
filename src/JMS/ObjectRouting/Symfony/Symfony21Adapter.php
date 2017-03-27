@@ -19,17 +19,36 @@
 namespace JMS\ObjectRouting\Symfony;
 
 use JMS\ObjectRouting\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * Class Symfony21Adapter
+ *
+ * @package JMS\ObjectRouting\Symfony
+ */
 class Symfony21Adapter implements RouterInterface
 {
+    /**
+     * @var \Symfony\Component\Routing\RouterInterface
+     */
     private $delegate;
 
+    /**
+     * @param \Symfony\Component\Routing\RouterInterface $router
+     */
     public function __construct(\Symfony\Component\Routing\RouterInterface $router)
     {
         $this->delegate = $router;
     }
 
-    public function generate($name, array $params, $absolute = false)
+    /**
+     * @param string         $name
+     * @param array          $params
+     * @param bool|false|int $absolute
+     *
+     * @return string
+     */
+    public function generate($name, array $params, $absolute = UrlGeneratorInterface::ABSOLUTE_URL)
     {
         return $this->delegate->generate($name, $params, $absolute);
     }

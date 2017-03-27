@@ -23,15 +23,31 @@ use JMS\ObjectRouting\Annotation\ObjectRoute;
 use JMS\ObjectRouting\Metadata\ClassMetadata;
 use Metadata\Driver\DriverInterface;
 
+/**
+ * Class AnnotationDriver
+ *
+ * @package JMS\ObjectRouting\Metadata\Driver
+ */
 class AnnotationDriver implements DriverInterface
 {
+    /**
+     * @var Reader
+     */
     private $reader;
 
+    /**
+     * @param Reader $reader
+     */
     public function __construct(Reader $reader)
     {
         $this->reader = $reader;
     }
 
+    /**
+     * @param \ReflectionClass $class
+     *
+     * @return ClassMetadata|null
+     */
     public function loadMetadataForClass(\ReflectionClass $class)
     {
         $metadata = new ClassMetadata($class->name);
