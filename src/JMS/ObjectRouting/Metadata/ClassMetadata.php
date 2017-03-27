@@ -41,4 +41,25 @@ class ClassMetadata extends MergeableClassMetadata
             'params' => $params,
         );
     }
+
+    public function serialize()
+    {
+        return serialize(
+            array(
+                $this->routes,
+                parent::serialize(),
+            )
+        );
+    }
+
+    public function unserialize($str)
+    {
+        list(
+            $this->routes,
+            $parentStr
+            ) = unserialize($str);
+
+        parent::unserialize($parentStr);
+    }
+
 }

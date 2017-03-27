@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<object-routing>
+    <class name="JMS\Tests\ObjectRouting\Metadata\Driver\Fixture\BlogPost">
+        <route type="view" name="blog_post_view">
+            <param name="slug">slug</param>
+        </route>
+        <route type="edit" name="blog_post_edit">
+            <param name="slug">slug</param>
+        </route>
+    </class>
+</object-routing>
