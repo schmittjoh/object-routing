@@ -2,8 +2,7 @@ Object Routing Library
 ======================
 
 This library makes generating routes for objects a breeze, and is not tied to any concrete router implementation. As
-part of the library, we ship an adapter for Symfony's router. For Symfony router version <2.2 use
-``JMS/ObjectRouting/Symfony/Symfony21Adapter`` and for a version >=2.2 use ``JMS/ObjectRouting/Symfony/Symfony22Adapter``.
+part of the library, we ship an adapter for Symfony's router.
 
 Installation
 ------------

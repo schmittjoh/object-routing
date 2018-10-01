@@ -15,24 +15,19 @@ class RoutingExtension extends \Twig_Extension
 
     public function getFunctions()
     {
-        return array(
-            'object_path' => new \Twig_Function_Method($this, 'path'),
-            'object_url'  => new \Twig_Function_Method($this, 'url'),
-        );
+        return [
+            new \Twig_SimpleFunction('object_path', [$this, 'path']),
+            new \Twig_SimpleFunction('object_url', [$this, 'url']),
+        ];
     }
 
-    public function url($type, $object, array $extraParams = array())
+    public function url($type, $object, array $extraParams = [])
     {
         return $this->router->generate($type, $object, true, $extraParams);
     }
 
-    public function path($type, $object, array $extraParams = array())
+    public function path($type, $object, array $extraParams = [])
     {
         return $this->router->generate($type, $object, false, $extraParams);
-    }
-
-    public function getName()
-    {
-        return 'jms.object_routing';
     }
 }

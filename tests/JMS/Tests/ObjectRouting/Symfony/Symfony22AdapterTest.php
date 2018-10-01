@@ -13,9 +13,6 @@ class Symfony22AdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testGenerate()
     {
-        if(!defined('Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL')){
-            $this->markTestSkipped('Skipping this test because required constant UrlGeneratorInterface::ABSOLUTE_URL is not defined.');
-        }
         $this->router->expects($this->once())
             ->method('generate')
             ->with('foo', array('bar' => 'baz'), UrlGeneratorInterface::ABSOLUTE_URL)
