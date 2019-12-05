@@ -9,13 +9,13 @@
 
     "require": {
         "jms/metadata": "^1.3",
-        "symfony/property-access": "^2.2||^3.0"
+        "symfony/property-access": "^2.2||^3.0||^4.0"
     },
 
     "require-dev": {
-        "symfony/routing": "^2.2||^3.0",
+        "symfony/routing": "^2.2||^3.0||^4.0",
         "doctrine/common": "^2.2",
-        "symfony/yaml": "^2.0||^3.0"
+        "symfony/yaml": "^2.0||^3.0||^4.0"
     },
 
     "conflict": {
