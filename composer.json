@@ -26,5 +26,12 @@
         "psr-0": {
             "JMS": "src/"
         }
+    },
+
+    "autoload-dev": {
+        "psr-0": {
+            "JMS\\Tests": "tests/"
+        }
     }
+
 }

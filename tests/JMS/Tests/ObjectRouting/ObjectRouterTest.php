@@ -84,8 +84,8 @@ class ObjectRouterTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->router = new ObjectRouter(
-            $this->adapter = $this->getMock('JMS\ObjectRouting\RouterInterface'),
-            $this->factory = $this->getMock('Metadata\MetadataFactoryInterface')
+            $this->adapter = $this->createMock('JMS\ObjectRouting\RouterInterface'),
+            $this->factory = $this->createMock('Metadata\MetadataFactoryInterface')
         );
     }
 }

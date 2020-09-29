@@ -24,7 +24,7 @@ class Symfony22AdapterTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->adapter = new Symfony22Adapter(
-            $this->router = $this->getMock('Symfony\Component\Routing\RouterInterface')
+            $this->router = $this->createMock('Symfony\Component\Routing\RouterInterface')
         );
     }
 }
