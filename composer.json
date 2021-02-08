@@ -13,9 +13,10 @@
     },
 
     "require-dev": {
-        "symfony/routing": "^2.2||^3.0||^4.0",
+        "symfony/routing": "^2.2|^3.0|^4.0",
         "doctrine/common": "^2.2",
-        "symfony/yaml": "^2.0||^3.0||^4.0"
+        "symfony/yaml": "^2.0|^3.0|^4.0",
+        "twig/twig": "^1.0|^2.0"
     },
 
     "conflict": {
