@@ -106,10 +106,6 @@ For Twig, this library also provides two new functions:
     {# equivalent to #}
     {{ url('the-actual-route-name', {'slug': blogPost.slug}) }}
 
-For compatibility reason this library is shipped with two Twig extensions. If you are using Twig 1.*
-``JMS/ObjectRouting/Twig/RoutingExtension`` will fit your needs and if you need support for Twig 2.* you can use
-``JMS/ObjectRouting/Twig/Routing20Extension``.
-
 License
 -------
 

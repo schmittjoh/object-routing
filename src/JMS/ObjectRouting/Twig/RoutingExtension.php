@@ -3,8 +3,10 @@
 namespace JMS\ObjectRouting\Twig;
 
 use JMS\ObjectRouting\ObjectRouter;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class RoutingExtension extends \Twig_Extension
+class RoutingExtension extends AbstractExtension
 {
     private $router;
 
@@ -16,8 +18,8 @@ class RoutingExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('object_path', [$this, 'path']),
-            new \Twig_SimpleFunction('object_url', [$this, 'url']),
+            new TwigFunction('object_path', [$this, 'path']),
+            new TwigFunction('object_url', [$this, 'url']),
         ];
     }
 
