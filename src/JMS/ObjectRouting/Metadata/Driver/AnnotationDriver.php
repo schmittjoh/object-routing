@@ -32,7 +32,7 @@ class AnnotationDriver implements DriverInterface
         $this->reader = $reader;
     }
 
-    public function loadMetadataForClass(\ReflectionClass $class)
+    public function loadMetadataForClass(\ReflectionClass $class): ?ClassMetadata
     {
         $metadata = new ClassMetadata($class->name);
 

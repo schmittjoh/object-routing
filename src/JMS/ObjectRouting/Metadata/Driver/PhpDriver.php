@@ -30,7 +30,7 @@ use Metadata\Driver\AbstractFileDriver;
  */
 class PhpDriver extends AbstractFileDriver
 {
-    protected function loadMetadataFromFile(\ReflectionClass $class, $file)
+    protected function loadMetadataFromFile(\ReflectionClass $class, $file): ?ClassMetadata
     {
         $metadata = require $file;
         if (!$metadata instanceof ClassMetadata) {
@@ -43,7 +43,7 @@ class PhpDriver extends AbstractFileDriver
         return $metadata;
     }
 
-    protected function getExtension()
+    protected function getExtension(): string
     {
         return 'php';
     }
