@@ -3,9 +3,11 @@
 namespace JMS\Tests\ObjectRouting\Symfony;
 
 use JMS\ObjectRouting\Symfony\Symfony22Adapter;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 
-class Symfony22AdapterTest extends \PHPUnit_Framework_TestCase
+class Symfony22AdapterTest extends TestCase
 {
     /** @var Symfony22Adapter */
     private $adapter;
@@ -24,10 +26,10 @@ class Symfony22AdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('/foo-bar-baz', $this->adapter->generate('foo', array('bar' => 'baz'), true));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adapter = new Symfony22Adapter(
-            $this->router = $this->getMock('Symfony\Component\Routing\RouterInterface')
+            $this->router = $this->getMockBuilder(RouterInterface::class)->getMock()
         );
     }
 }

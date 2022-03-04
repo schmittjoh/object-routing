@@ -4,8 +4,9 @@ namespace JMS\Tests\ObjectRouting\Metadata\Driver;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
+use PHPUnit\Framework\TestCase;
 
-class AnnotationDriverTest extends \PHPUnit_Framework_TestCase
+class AnnotationDriverTest extends TestCase
 {
     /** @var AnnotationDriver */
     private $driver;
@@ -27,7 +28,7 @@ class AnnotationDriverTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->driver->loadMetadataForClass(new \ReflectionClass('stdClass')));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->driver = new AnnotationDriver(new AnnotationReader());
     }

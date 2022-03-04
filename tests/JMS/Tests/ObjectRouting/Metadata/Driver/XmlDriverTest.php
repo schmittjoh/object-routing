@@ -6,8 +6,9 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
 use JMS\ObjectRouting\Metadata\Driver\XmlDriver;
 use Metadata\Driver\FileLocator;
+use PHPUnit\Framework\TestCase;
 
-class XmlDriverTest extends \PHPUnit_Framework_TestCase
+class XmlDriverTest extends TestCase
 {
     /** @var XmlDriver */
     private $driver;
@@ -29,7 +30,7 @@ class XmlDriverTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->driver->loadMetadataForClass(new \ReflectionClass('stdClass')));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->driver = new XmlDriver(new FileLocator(array('' => realpath(__DIR__.'/../../Resources/config'))));
     }
