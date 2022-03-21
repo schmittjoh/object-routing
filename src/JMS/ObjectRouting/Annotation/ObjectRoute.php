@@ -22,6 +22,7 @@ namespace JMS\ObjectRouting\Annotation;
  * @Annotation
  * @Target("CLASS")
  */
+#[\Attribute(\Attribute::IS_REPEATABLE | \Attribute::TARGET_CLASS)]
 final class ObjectRoute
 {
     /** @var string @Required */
@@ -32,4 +33,11 @@ final class ObjectRoute
 
     /** @var array */
     public $params = array();
+
+    public function __construct(string $type, string $name, array $params = [])
+    {
+        $this->type = $type;
+        $this->name = $name;
+        $this->params = $params;
+    }
 }
