@@ -1,11 +1,7 @@
 {
-    "name": "webfactory/object-routing",
+    "name": "jms/object-routing",
     "description": "Library for generating routes based on objects.",
     "license": "Apache-2.0",
-
-    "replace": {
-        "jms/object-routing": "<= 1.0.0"
-    },
 
     "require": {
         "php": "^7.4|8.0.*|8.1.*",
