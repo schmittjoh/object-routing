@@ -32,12 +32,12 @@ class AnnotationDriver implements DriverInterface
         $this->reader = $reader;
     }
 
-    public function loadMetadataForClass(\ReflectionClass $class)
+    public function loadMetadataForClass(\ReflectionClass $class): ?ClassMetadata
     {
         $metadata = new ClassMetadata($class->name);
 
         $hasMetadata = false;
-        foreach ($this->reader->getClassAnnotations($class) as $annot) {
+        foreach ([...$this->reader->getClassAnnotations($class), ...$this->buildAnnotations($class)] as $annot) {
             if ($annot instanceof ObjectRoute) {
                 $hasMetadata = true;
                 $metadata->addRoute($annot->type, $annot->name, $annot->params);
@@ -45,5 +45,17 @@ class AnnotationDriver implements DriverInterface
         }
 
         return $hasMetadata ? $metadata : null;
+    }
+
+    private function buildAnnotations(\ReflectionClass $class): array
+    {
+        $annots = [];
+        foreach ($class->getAttributes() as $attr) {
+            if (str_starts_with($attr->getName(), 'JMS\\ObjectRouting\\Annotation\\')) {
+                $annots[] = $attr->newInstance();
+            }
+        }
+
+        return $annots;
     }
 }

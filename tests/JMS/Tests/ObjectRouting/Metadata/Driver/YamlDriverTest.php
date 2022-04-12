@@ -6,8 +6,9 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
 use JMS\ObjectRouting\Metadata\Driver\YamlDriver;
 use Metadata\Driver\FileLocator;
+use PHPUnit\Framework\TestCase;
 
-class YamlDriverTest extends \PHPUnit_Framework_TestCase
+class YamlDriverTest extends TestCase
 {
     /** @var YamlDriver */
     private $driver;
@@ -29,7 +30,7 @@ class YamlDriverTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->driver->loadMetadataForClass(new \ReflectionClass('stdClass')));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->driver = new YamlDriver(new FileLocator(array('' => realpath(__DIR__.'/../../Resources/config'))));
     }

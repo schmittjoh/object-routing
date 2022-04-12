@@ -4,8 +4,9 @@ namespace JMS\Tests\ObjectRouting\Metadata\Driver;
 
 use JMS\ObjectRouting\Metadata\Driver\PhpDriver;
 use Metadata\Driver\FileLocator;
+use PHPUnit\Framework\TestCase;
 
-class PhpDriverTest extends \PHPUnit_Framework_TestCase
+class PhpDriverTest extends TestCase
 {
     /** @var PhpDriver */
     private $driver;
@@ -27,7 +28,7 @@ class PhpDriverTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->driver->loadMetadataForClass(new \ReflectionClass('stdClass')));
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->driver = new PhpDriver(new FileLocator(array('' => realpath(__DIR__.'/../../Resources/config'))));
     }

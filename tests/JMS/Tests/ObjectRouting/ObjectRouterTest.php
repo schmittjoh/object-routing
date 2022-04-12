@@ -2,12 +2,13 @@
 
 namespace JMS\Tests\ObjectRouting;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\ObjectRouting\Metadata\ClassMetadata;
-use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
 use JMS\ObjectRouting\ObjectRouter;
+use JMS\ObjectRouting\RouterInterface;
+use Metadata\MetadataFactoryInterface;
+use PHPUnit\Framework\TestCase;
 
-class ObjectRouterTest extends \PHPUnit_Framework_TestCase
+class ObjectRouterTest extends TestCase
 {
     /** @var ObjectRouter */
     private $router;
@@ -52,12 +53,11 @@ class ObjectRouterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('/foobar', $this->router->generate('view', $object));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage The object of class "stdClass" has no route with type "foo". Available types: view
-     */
     public function testGenerateNonExistentType()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The object of class "stdClass" has no route with type "foo". Available types: view');
+
         $metadata = new ClassMetadata('stdClass');
         $metadata->addRoute('view', 'view_name');
 
@@ -68,12 +68,11 @@ class ObjectRouterTest extends \PHPUnit_Framework_TestCase
         $this->router->generate('foo', new \stdClass);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage There were no object routes defined for class "stdClass".
-     */
     public function testGenerateNoMetadata()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('There were no object routes defined for class "stdClass".');
+
         $this->factory->expects($this->once())
             ->method('getMetadataForClass')
             ->will($this->returnValue(null));
@@ -81,11 +80,11 @@ class ObjectRouterTest extends \PHPUnit_Framework_TestCase
         $this->router->generate('foo', new \stdClass);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->router = new ObjectRouter(
-            $this->adapter = $this->createMock('JMS\ObjectRouting\RouterInterface'),
-            $this->factory = $this->createMock('Metadata\MetadataFactoryInterface')
+            $this->adapter = $this->getMockBuilder(RouterInterface::class)->getMock(),
+            $this->factory = $this->getMockBuilder(MetadataFactoryInterface::class)->getMock()
         );
     }
 }
