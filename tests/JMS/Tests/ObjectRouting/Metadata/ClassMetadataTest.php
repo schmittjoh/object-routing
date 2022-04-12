@@ -9,7 +9,7 @@ class ClassMetadataTest extends TestCase
 {
     public function testMerge()
     {
-        $base = new ClassMetadata(\PHPUnit_Framework_TestCase::class);
+        $base = new ClassMetadata(TestCase::class);
         $base->addRoute('test', 'base-route');
 
         $merged = new ClassMetadata(self::class);
