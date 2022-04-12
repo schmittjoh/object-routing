@@ -35,7 +35,7 @@ final class ObjectRoute
     /** @var array */
     public $params = array();
 
-    public function __construct(string $type = null, string $name = null, array $params = [])
+    public function __construct(string $type, string $name, array $params = [])
     {
         $this->type = $type;
         $this->name = $name;
