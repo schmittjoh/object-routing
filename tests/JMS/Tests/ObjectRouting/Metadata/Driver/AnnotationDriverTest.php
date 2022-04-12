@@ -8,6 +8,13 @@ use PHPUnit\Framework\TestCase;
 
 class AnnotationDriverTest extends TestCase
 {
+    public static function setUpBeforeClass(): void
+    {
+        if (PHP_MAJOR_VERSION < 8) {
+            self::markTestSkipped(AnnotationDriver::class . ' is only supported for PHP ^8.0');
+        }
+    }
+
     /** @var AnnotationDriver */
     private $driver;
 

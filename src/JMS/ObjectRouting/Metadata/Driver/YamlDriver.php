@@ -40,7 +40,7 @@ class YamlDriver extends AbstractFileDriver
      *
      * @return \Metadata\ClassMetadata|null
      */
-    protected function loadMetadataFromFile(\ReflectionClass $class, $file): ?ClassMetadata
+    protected function loadMetadataFromFile(\ReflectionClass $class, string $file): ?ClassMetadata
     {
         $config = Yaml::parse(file_get_contents($file));
 

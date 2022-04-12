@@ -37,7 +37,7 @@ class AnnotationDriver implements DriverInterface
         $metadata = new ClassMetadata($class->name);
 
         $hasMetadata = false;
-        foreach ([...$this->reader->getClassAnnotations($class), ...$this->buildAnnotations($class)] as $annot) {
+        foreach (array_merge($this->reader->getClassAnnotations($class), $this->buildAnnotations($class)) as $annot) {
             if ($annot instanceof ObjectRoute) {
                 $hasMetadata = true;
                 $metadata->addRoute($annot->type, $annot->name, $annot->params);

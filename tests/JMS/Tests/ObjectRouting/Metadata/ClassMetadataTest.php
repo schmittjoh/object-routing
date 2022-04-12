@@ -3,8 +3,9 @@
 namespace JMS\Tests\ObjectRouting\Metadata;
 
 use JMS\ObjectRouting\Metadata\ClassMetadata;
+use PHPUnit\Framework\TestCase;
 
-class ClassMetadataTest extends \PHPUnit_Framework_TestCase
+class ClassMetadataTest extends TestCase
 {
     public function testMerge()
     {

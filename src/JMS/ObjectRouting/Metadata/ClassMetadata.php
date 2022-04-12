@@ -33,7 +33,7 @@ class ClassMetadata extends MergeableClassMetadata
         );
     }
 
-    public function merge(MergeableInterface $object)
+    public function merge(MergeableInterface $object): void
     {
         parent::merge($object);
         $this->routes = array_merge($this->routes, $object->routes);
