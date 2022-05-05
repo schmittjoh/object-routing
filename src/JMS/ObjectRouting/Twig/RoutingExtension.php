@@ -15,7 +15,7 @@ class RoutingExtension extends AbstractExtension
         $this->router = $router;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('object_path', [$this, 'path']),
@@ -23,12 +23,12 @@ class RoutingExtension extends AbstractExtension
         ];
     }
 
-    public function url($type, $object, array $extraParams = [])
+    public function url($type, $object, array $extraParams = []): string
     {
         return $this->router->generate($type, $object, true, $extraParams);
     }
 
-    public function path($type, $object, array $extraParams = [])
+    public function path($type, $object, array $extraParams = []): string
     {
         return $this->router->generate($type, $object, false, $extraParams);
     }

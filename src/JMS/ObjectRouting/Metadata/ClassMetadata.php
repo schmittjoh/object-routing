@@ -39,7 +39,7 @@ class ClassMetadata extends MergeableClassMetadata
         $this->routes = array_merge($this->routes, $object->routes);
     }
 
-    public function serialize()
+    public function serialize(): string
     {
         return serialize(
             array(
@@ -49,7 +49,7 @@ class ClassMetadata extends MergeableClassMetadata
         );
     }
 
-    public function unserialize($str)
+    public function unserialize($str): void
     {
         list(
             $this->routes,

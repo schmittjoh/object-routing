@@ -50,9 +50,12 @@ class AnnotationDriver implements DriverInterface
     private function buildAnnotations(\ReflectionClass $class): array
     {
         $annots = [];
-        foreach ($class->getAttributes() as $attr) {
-            if (str_starts_with($attr->getName(), 'JMS\\ObjectRouting\\Annotation\\')) {
-                $annots[] = $attr->newInstance();
+
+        if (PHP_MAJOR_VERSION >= 8) {
+            foreach ($class->getAttributes() as $attr) {
+                if (str_starts_with($attr->getName(), 'JMS\\ObjectRouting\\Annotation\\')) {
+                    $annots[] = $attr->newInstance();
+                }
             }
         }
 
