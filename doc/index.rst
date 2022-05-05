@@ -2,8 +2,7 @@ Object Routing Library
 ======================
 
 This library makes generating routes for objects a breeze, and is not tied to any concrete router implementation. As
-part of the library, we ship an adapter for Symfony's router. For Symfony router version <2.2 use
-``JMS/ObjectRouting/Symfony/Symfony21Adapter`` and for a version >=2.2 use ``JMS/ObjectRouting/Symfony/Symfony22Adapter``.
+part of the library, we ship an adapter for Symfony's router.
 
 Installation
 ------------
@@ -106,10 +105,6 @@ For Twig, this library also provides two new functions:
     {{ object_url('view', blogPost) }}
     {# equivalent to #}
     {{ url('the-actual-route-name', {'slug': blogPost.slug}) }}
-
-For compatibility reason this library is shipped with two Twig extensions. If you are using Twig 1.*
-``JMS/ObjectRouting/Twig/RoutingExtension`` will fit your needs and if you need support for Twig 2.* you can use
-``JMS/ObjectRouting/Twig/Routing20Extension``.
 
 License
 -------

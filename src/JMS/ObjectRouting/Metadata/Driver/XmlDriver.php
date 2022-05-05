@@ -40,7 +40,7 @@ class XmlDriver extends AbstractFileDriver
      *
      * @return \Metadata\ClassMetadata|null
      */
-    protected function loadMetadataFromFile(\ReflectionClass $class, $file): ?ClassMetadata
+    protected function loadMetadataFromFile(\ReflectionClass $class, string $file): ?ClassMetadata
     {
         $previous = libxml_use_internal_errors(true);
         $elem = simplexml_load_file($file);

@@ -28,11 +28,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class Symfony22Adapter implements RouterInterface
 {
+    /**
+     * @var UrlGeneratorInterface
+     */
     private $delegate;
 
-    public function __construct(\Symfony\Component\Routing\RouterInterface $router)
+    public function __construct(UrlGeneratorInterface $urlGenerator)
     {
-        $this->delegate = $router;
+        $this->delegate = $urlGenerator;
     }
 
     public function generate($name, array $params, $absolute = false)

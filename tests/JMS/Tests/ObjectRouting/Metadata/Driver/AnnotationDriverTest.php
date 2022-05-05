@@ -4,6 +4,7 @@ namespace JMS\Tests\ObjectRouting\Metadata\Driver;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
+use JMS\Tests\ObjectRouting\Metadata\Driver\Fixture\BlogPost;
 use PHPUnit\Framework\TestCase;
 
 class AnnotationDriverTest extends TestCase
@@ -13,7 +14,7 @@ class AnnotationDriverTest extends TestCase
 
     public function testLoad()
     {
-        $metadata = $this->driver->loadMetadataForClass(new \ReflectionClass('JMS\Tests\ObjectRouting\Metadata\Driver\Fixture\BlogPost'));
+        $metadata = $this->driver->loadMetadataForClass(new \ReflectionClass(BlogPost::class));
         $this->assertCount(2, $metadata->routes);
 
         $routes = array(

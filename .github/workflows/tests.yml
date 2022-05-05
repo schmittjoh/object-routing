@@ -1,0 +1,37 @@
+name: Tests
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+env:
+    SYMFONY_DEPRECATIONS_HELPER: weak
+
+jobs:
+    PHPUnit:
+        runs-on: ubuntu-20.04
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    - { php-version: 7.4, dependency-version: prefer-lowest }
+                    - { php-version: 7.4, dependency-version: prefer-stable }
+                    - { php-version: 8.1, dependency-version: prefer-stable }
+        name: PHPUnit (PHP ${{matrix.php-version}}, ${{ matrix.dependency-version }})
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: shivammathur/setup-php@v2
+                with:
+                  php-version: ${{ matrix.php-version }}
+                  tools: composer:v2
+            -   uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: composer-${{ runner.os }}-${{ matrix.php-version }}-${{ matrix.dependency-version }}-${{ hashFiles('composer.json') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ matrix.php-version }}-${{ matrix.dependency-version }}-
+            -   run: composer update --${{ matrix.dependency-version }} --no-interaction --no-scripts --no-progress --ansi
+            -   run: composer show
+            -   run: vendor/bin/phpunit

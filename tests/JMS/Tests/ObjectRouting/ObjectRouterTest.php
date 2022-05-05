@@ -2,9 +2,7 @@
 
 namespace JMS\Tests\ObjectRouting;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use JMS\ObjectRouting\Metadata\ClassMetadata;
-use JMS\ObjectRouting\Metadata\Driver\AnnotationDriver;
 use JMS\ObjectRouting\ObjectRouter;
 use JMS\ObjectRouting\RouterInterface;
 use Metadata\MetadataFactoryInterface;

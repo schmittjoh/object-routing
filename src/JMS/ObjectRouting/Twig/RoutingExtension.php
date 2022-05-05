@@ -15,26 +15,21 @@ class RoutingExtension extends AbstractExtension
         $this->router = $router;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
-        return array(
+        return [
             new TwigFunction('object_path', [$this, 'path']),
             new TwigFunction('object_url', [$this, 'url']),
-        );
+        ];
     }
 
-    public function url($type, $object, array $extraParams = array())
+    public function url($type, $object, array $extraParams = []): string
     {
         return $this->router->generate($type, $object, true, $extraParams);
     }
 
-    public function path($type, $object, array $extraParams = array())
+    public function path($type, $object, array $extraParams = []): string
     {
         return $this->router->generate($type, $object, false, $extraParams);
-    }
-
-    public function getName()
-    {
-        return 'jms.object_routing';
     }
 }

@@ -19,6 +19,7 @@
 namespace JMS\ObjectRouting\Metadata;
 
 use Metadata\MergeableClassMetadata;
+use Metadata\MergeableInterface;
 
 class ClassMetadata extends MergeableClassMetadata
 {
@@ -32,7 +33,13 @@ class ClassMetadata extends MergeableClassMetadata
         );
     }
 
-    public function serialize()
+    public function merge(MergeableInterface $object): void
+    {
+        parent::merge($object);
+        $this->routes = array_merge($this->routes, $object->routes);
+    }
+
+    public function serialize(): string
     {
         return serialize(
             array(
@@ -42,7 +49,7 @@ class ClassMetadata extends MergeableClassMetadata
         );
     }
 
-    public function unserialize($str)
+    public function unserialize($str): void
     {
         list(
             $this->routes,
